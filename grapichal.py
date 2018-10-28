@@ -1,33 +1,54 @@
 from tkinter import *
-import time
-amount_knives = 0
 root = Tk()
+label_text = StringVar()
+amount_knives = 0
+label_text.set('Total amount of knifes: ' + str(amount_knives))
 def scrollclick(event):
     print("You scroll-cliked me")
 def leftclick(event):
     global amount_knives
-    print("You left-clicked me")
-    amount_knives += 1
+    click()
+
 
 def rightclick(event):
     print("You right-clicked me")
 
+def click():
+    global amount_knives
+    amount_knives += 1
+    label_text.set('Total amount of knifes: ' + str(amount_knives))
+def pre_bosses_melee_charachter:
+    amount_knives
+
+
 box = Frame(root, width=800, height=600)
 photo = PhotoImage(file="Vampire_Knives.png")
 label_photo = Label(root, image=photo)
-label_amount = Label(root, text="Total amount of knifes: "+str(amount_knives))
+label_amount = Label(textvariable = label_text)
 label_photo.bind("<Button-1>", leftclick)
 label_photo.grid(row=0, column=3)
 box.grid(row=3, column=3)
-#label_photo.grid(column=3)
-while True:
-    label_amount = Label(root, text="Total amount of knifes: " + str(amount_knives))
-    label_amount.grid(row=2, column=3)
-    root.mainloop()
-    time.sleep(0.1)
+label_photo.grid(column=3)
+label_amount.grid(row=1, column=3)
+root.mainloop()
 
 
 
+
+
+# from tkinter import *
+#
+# root = Tk()
+# test = StringVar()
+# test.set('hello')
+#
+# label = Label(root, textvariable = test)
+# label.pack()
+#
+# entry_box = Entry(root, textvariable = test)
+# entry_box.pack()
+#
+# root.mainloop() # the window is now displayed
 
 
 
