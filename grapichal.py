@@ -17,8 +17,9 @@ def click():
     global amount_knives
     amount_knives += 1
     label_text.set('Total amount of knifes: ' + str(amount_knives))
-def pre_bosses_melee_charachter:
-    amount_knives
+def pre_bosses_melee_charachter():
+    amount_knives += 1
+    label_text.set('Total amount of knifes: ' + str(amount_knives))
 
 
 box = Frame(root, width=800, height=600)
