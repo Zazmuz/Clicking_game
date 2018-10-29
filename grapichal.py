@@ -12,7 +12,7 @@ amount_knives = 0
 kps = 0
 kps_wood_armor = 0.2
 kps_shadow_armor = 1
-kps_molten_armor = 0
+kps_molten_armor = 2
 price_wood_armor = 100
 price_shadow_armor = 500
 price_molten_armor = 1000
@@ -21,6 +21,7 @@ label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
 label_kps_text.set('Kps: ' + str(kps))
 label_price_wood_armor_text.set('Costs: ' + str(price_wood_armor) + ' knives \n Grants: ' + str(kps_wood_armor) + ' kps')
 label_price_shadow_armor_text.set('Costs: ' + str(price_shadow_armor) + ' knives \n Grants: ' + str(kps_shadow_armor) + ' kps')
+label_price_molten_armor_text.set('Costs: ' + str(price_molten_armor) + ' knives \n Grants: ' + str(kps_molten_armor) + ' kps')
 
 
 def kps_func():
@@ -45,7 +46,7 @@ def woodarmor(event):
     global price_wood_armor
     if amount_knives >= price_wood_armor:
         amount_knives -= price_wood_armor
-        kps += 0.2
+        kps += kps_wood_armor
         price_wood_armor += round(price_wood_armor/12)
         kps = round(kps, 1)
         label_kps_text.set('Kps: ' + str(kps))
@@ -59,18 +60,31 @@ def shadowarmor(event):
     global price_shadow_armor
     if amount_knives >= price_shadow_armor:
         amount_knives -= price_shadow_armor
-        kps += 1
+        kps += kps_shadow_armor
         price_shadow_armor += round(price_shadow_armor/12)
         kps = round(kps, 1)
         label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
     label_price_shadow_armor_text.set('Costs: ' + str(price_shadow_armor) + ' knives \n Grants: ' + str(kps_shadow_armor) + ' kps')
 
+def moltenarmor(event):
+    global amount_knives
+    global kps
+    global price_molten_armor
+    if amount_knives >= price_molten_armor:
+        amount_knives -= price_molten_armor
+        kps += kps_molten_armor
+        price_molten_armor += round(price_molten_armor/12)
+        kps = round(kps, 1)
+        label_kps_text.set('Kps: ' + str(kps))
+    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+    label_price_molten_armor_text.set('Costs: ' + str(price_molten_armor) + ' knives \n Grants: ' + str(kps_molten_armor) + ' kps')
+
 
 t1 = Thread(target=kps_func)
 t1.start()
-box = Frame(root, width=400, height=200)
-box.grid(row=3, column=3)
+# box = Frame(root, width=400, height=200)
+# box.grid(row=3, column=3)
 
 
 photo_knife = PhotoImage(file="Vampire_Knives.png")
@@ -88,12 +102,17 @@ label_photo_shadow_armor = Label(root, image=photo_shadow_armor)
 label_photo_shadow_armor.bind("<Button-1>", shadowarmor)
 label_photo_shadow_armor.grid(row=2, column=0)
 
+photo_molten_armor = PhotoImage(file="molten_armor.png")
+label_photo_molten_armor = Label(root, image=photo_molten_armor)
+label_photo_molten_armor.bind("<Button-1>", moltenarmor)
+label_photo_molten_armor.grid(row=3, column=0)
+
 
 label_kps = Label(textvariable = label_kps_text)
 label_amount = Label(textvariable = label_knife_amount_text)
 label_price_wood_armor = Label(textvariable = label_price_wood_armor_text)
 label_price_shadow_armor = Label(textvariable = label_price_shadow_armor_text)
-
+label_price_molten_armor = Label(textvariable = label_price_molten_armor_text)
 
 
 
@@ -102,6 +121,7 @@ label_amount.grid(row=1, column=3)
 label_kps.grid(row=2, column=3)
 label_price_wood_armor.grid(row=1, column=1)
 label_price_shadow_armor.grid(row=2, column=1)
+label_price_molten_armor.grid(row=3, column=1)
 root.mainloop()
 
 
