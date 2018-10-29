@@ -8,7 +8,7 @@ label_kps_text = StringVar()
 label_price_wood_armor_text = StringVar()
 label_price_shadow_armor_text = StringVar()
 label_price_molten_armor_text= StringVar()
-amount_knives = 1000
+amount_knives = 0
 kps = 0
 kps_wood_armor = 0.2
 kps_shadow_armor = 1
@@ -32,7 +32,7 @@ def kps_func():
         amount_knives = round(amount_knives, 1)
         label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
 
-def leftclick():
+def leftclick(event):
     click()
 
 def click():
