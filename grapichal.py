@@ -41,8 +41,8 @@ def woodarmor(event):
     global amount_knives
     global kps
     global price_wood_armor
-    if amount_knives >= 100:
-        amount_knives -= 100
+    if amount_knives >= price_wood_armor:
+        amount_knives -= price_wood_armor
         kps += 0.2
         price_wood_armor += round(price_wood_armor/12)
         kps = round(kps, 1)
