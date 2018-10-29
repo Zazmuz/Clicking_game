@@ -6,19 +6,22 @@ root = Tk()
 label_knife_amount_text = StringVar()
 label_kps_text = StringVar()
 label_price_wood_armor_text = StringVar()
-
+label_price_shadow_armor_text = StringVar()
+label_price_molten_armor_text= StringVar()
 amount_knives = 1000
 kps = 0
+kps_wood_armor = 0.2
+kps_shadow_armor = 1
+kps_molten_armor = 0
 price_wood_armor = 100
+price_shadow_armor = 500
+price_molten_armor = 1000
 
 label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
 label_kps_text.set('Kps: ' + str(kps))
-label_price_wood_armor_text.set('Costs: ' + str(price_wood_armor) + ' knives \n Grants 0.2 kps')
+label_price_wood_armor_text.set('Costs: ' + str(price_wood_armor) + ' knives \n Grants: ' + str(kps_wood_armor) + ' kps')
+label_price_shadow_armor_text.set('Costs: ' + str(price_shadow_armor) + ' knives \n Grants: ' + str(kps_shadow_armor) + ' kps')
 
-def scrollclick(event):
-    print("You scroll-cliked me")
-def leftclick(event):
-    click()
 
 def kps_func():
     global kps
@@ -29,9 +32,8 @@ def kps_func():
         amount_knives = round(amount_knives, 1)
         label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
 
-
-def rightclick(event):
-    print("You right-clicked me")
+def leftclick():
+    click()
 
 def click():
     global amount_knives
@@ -48,7 +50,21 @@ def woodarmor(event):
         kps = round(kps, 1)
         label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
-    label_price_wood_armor_text.set('Costs: ' + str(price_wood_armor) + ' knives \n Grants 0.2 kps')
+    label_price_wood_armor_text.set('Costs: ' + str(price_wood_armor) + ' knives \n Grants: ' + str(kps_wood_armor) + ' kps')
+
+
+def shadowarmor(event):
+    global amount_knives
+    global kps
+    global price_shadow_armor
+    if amount_knives >= price_shadow_armor:
+        amount_knives -= price_shadow_armor
+        kps += 1
+        price_shadow_armor += round(price_shadow_armor/12)
+        kps = round(kps, 1)
+        label_kps_text.set('Kps: ' + str(kps))
+    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+    label_price_shadow_armor_text.set('Costs: ' + str(price_shadow_armor) + ' knives \n Grants: ' + str(kps_shadow_armor) + ' kps')
 
 
 t1 = Thread(target=kps_func)
@@ -67,14 +83,25 @@ label_photo_wood_armor = Label(root, image=photo_wood_armor)
 label_photo_wood_armor.bind("<Button-1>", woodarmor)
 label_photo_wood_armor.grid(row=1, column=0)
 
+photo_shadow_armor = PhotoImage(file="shadow_armor.png")
+label_photo_shadow_armor = Label(root, image=photo_shadow_armor)
+label_photo_shadow_armor.bind("<Button-1>", shadowarmor)
+label_photo_shadow_armor.grid(row=2, column=0)
+
+
+label_kps = Label(textvariable = label_kps_text)
 label_amount = Label(textvariable = label_knife_amount_text)
 label_price_wood_armor = Label(textvariable = label_price_wood_armor_text)
-label_kps = Label(textvariable = label_kps_text)
+label_price_shadow_armor = Label(textvariable = label_price_shadow_armor_text)
+
+
+
 
 
 label_amount.grid(row=1, column=3)
 label_kps.grid(row=2, column=3)
-label_price_wood_armor.grid(row=2, column=0)
+label_price_wood_armor.grid(row=1, column=1)
+label_price_shadow_armor.grid(row=2, column=1)
 root.mainloop()
 
 
