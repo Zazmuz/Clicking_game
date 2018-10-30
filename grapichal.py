@@ -37,6 +37,9 @@ price_yellow_hardmode_armor = 5000
 price_pink_hardmode_armor = 8000
 price_grey_hardmode_armor = 50000
 
+# Save variables
+
+
 # Telling all the text labels what to display
 label_kps_text.set('Kps: ' + str(kps))
 label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
@@ -63,6 +66,59 @@ def click(event):
     amount_knives += click_power
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
 
+def save():
+    # 1: Amount of knives
+    # 2: Kps
+    # 3: Prices top from bottom
+    #
+    #
+    #
+    #
+    Armor_price = [price_wood_armor, price_shadow_armor, price_molten_armor, price_yellow_hardmode_armor,price_pink_hardmode_armor, price_grey_hardmode_armor]
+
+    savefile = open("SaveFile.txt", "w+")
+    savefile.write(str(amount_knives) + "\n" + str(kps))
+    savefile = open("SaveFile.txt", "a")
+    for armor in Armor_price:
+        savefile.write("\n" + str(armor))
+    # savefile.write("]")
+def load():
+    global amount_knives
+    global kps
+    global price_wood_armor
+    global price_shadow_armor
+    global price_molten_armor
+    global price_yellow_hardmode_armor
+    global price_pink_hardmode_armor
+    global price_grey_hardmode_armor
+    savefile = open("SaveFile.txt","r")
+    inside_save_file = savefile.readlines()
+    amount_knives = float(inside_save_file[0][:-1])
+    kps = float(inside_save_file[1][:-1])
+    price_wood_armor = float(inside_save_file[2][:-1])
+    price_shadow_armor = float(inside_save_file[3][:-1])
+    price_molten_armor = float(inside_save_file[4][:-1])
+    price_yellow_hardmode_armor = float(inside_save_file[5][:-1])
+    price_pink_hardmode_armor = float(inside_save_file[6][:-1])
+    price_grey_hardmode_armor = float(inside_save_file[7][:-1])
+    print(amount_knives, kps, price_wood_armor, price_shadow_armor, price_molten_armor, price_yellow_hardmode_armor,price_pink_hardmode_armor, price_grey_hardmode_armor)
+    label_kps_text.set('Kps: ' + str(kps))
+    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+    label_price_wood_armor_text.set(
+        'Costs: ' + str(price_wood_armor) + ' knives \n Grants: ' + str(kps_wood_armor) + ' kps')
+    label_price_shadow_armor_text.set(
+        'Costs: ' + str(price_shadow_armor) + ' knives \n Grants: ' + str(kps_shadow_armor) + ' kps')
+    label_price_molten_armor_text.set(
+        'Costs: ' + str(price_molten_armor) + ' knives \n Grants: ' + str(kps_molten_armor) + ' kps')
+    label_price_yellow_hardmode_armor_text.set(
+        'Costs: ' + str(price_yellow_hardmode_armor) + ' knives \n Grants: ' + str(kps_yellow_hardmode_armor) + ' kps')
+    label_price_pink_hardmode_armor_text.set(
+        'Costs: ' + str(price_pink_hardmode_armor) + ' knives \n Grants: ' + str(kps_pink_hardmode_armor) + ' kps')
+    label_price_grey_hardmode_armor_text.set(
+        'Costs: ' + str(price_grey_hardmode_armor) + ' knives \n Grants: ' + str(kps_grey_hardmode_armor) + ' kps')
+    print(price_grey_hardmode_armor)
+
+
 # Defining all the armor funcions
 def woodarmor(event):
     global amount_knives
@@ -76,6 +132,7 @@ def woodarmor(event):
         label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
     label_price_wood_armor_text.set('Costs: ' + str(price_wood_armor) + ' knives \n Grants: ' + str(kps_wood_armor) + ' kps')
+    
 
 def shadowarmor(event):
     global amount_knives
@@ -205,6 +262,12 @@ label_price_yellow_hardmode_armor.grid(row=4, column=1)
 label_price_pink_hardmode_armor.grid(row=5, column=1)
 label_price_grey_hardmode_armor.grid(row=6, column=1)
 
+
+# Saving stuff
+save_button = Button(root, text="Save", command=save)
+load_button = Button(root, text="Load", command=load)
+save_button.grid(row=0, column=7)
+load_button.grid(row=0, column=8)
 # Displaying everything on the screen
 root.mainloop()
 
