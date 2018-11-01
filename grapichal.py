@@ -112,8 +112,7 @@ def load():
     price_molten_armor = float(inside_save_file[4][:-1])
     price_yellow_hardmode_armor = float(inside_save_file[5][:-1])
     price_pink_hardmode_armor = float(inside_save_file[6][:-1])
-    price_grey_hardmode_armor = float(inside_save_file[7][:-1])
-    print(amount_knives, kps, price_wood_armor, price_shadow_armor, price_molten_armor, price_yellow_hardmode_armor,
+    price_grey_hardmode_armor = float(inside_save_file[7])
           price_pink_hardmode_armor, price_grey_hardmode_armor)
     label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
@@ -129,7 +128,6 @@ def load():
         'Costs: ' + str(price_pink_hardmode_armor) + ' knives \n Grants: ' + str(kps_pink_hardmode_armor) + ' kps')
     label_price_grey_hardmode_armor_text.set(
         'Costs: ' + str(price_grey_hardmode_armor) + ' knives \n Grants: ' + str(kps_grey_hardmode_armor) + ' kps')
-    print(price_grey_hardmode_armor)
 
 
 # Defining all the armor funcions
