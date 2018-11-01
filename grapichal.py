@@ -113,7 +113,6 @@ def load():
     price_yellow_hardmode_armor = float(inside_save_file[5][:-1])
     price_pink_hardmode_armor = float(inside_save_file[6][:-1])
     price_grey_hardmode_armor = float(inside_save_file[7])
-          price_pink_hardmode_armor, price_grey_hardmode_armor)
     label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
     label_price_wood_armor_text.set(
