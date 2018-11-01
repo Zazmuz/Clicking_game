@@ -15,6 +15,12 @@ label_price_molten_armor_text = StringVar()
 label_price_yellow_hardmode_armor_text = StringVar()
 label_price_pink_hardmode_armor_text = StringVar()
 label_price_grey_hardmode_armor_text = StringVar()
+label_price_hallowed_armor_text = StringVar()
+label_price_chlorophyte_armor_text = StringVar()
+label_price_turtle_armor_text = StringVar()
+label_price_beetle_armor_text = StringVar()
+label_price_solar_flare_armor_text = StringVar()
+
 
 # Main starting variables
 amount_knives = 0
@@ -28,6 +34,11 @@ kps_molten_armor = 3
 kps_yellow_hardmode_armor = 20
 kps_pink_hardmode_armor = 35
 kps_grey_hardmode_armor = 250
+kps_hallowed_armor = 400
+kps_chlorophyte_armor = 600
+kps_turtle_armor = 3000
+kps_beetle_armor = 10000
+kps_solar_flare_armor = 1000000
 
 # Armor pricing
 price_wood_armor = 100
@@ -36,8 +47,11 @@ price_molten_armor = 1000
 price_yellow_hardmode_armor = 5000
 price_pink_hardmode_armor = 8000
 price_grey_hardmode_armor = 50000
-
-# Save variables
+price_hallowed_armor = 100000
+price_chlorophyte_armor = 200000
+price_turtle_armor = 500000
+price_beetle_armor = 1000000
+price_solar_flare_armor = 100000000
 
 
 # Telling all the text labels what to display
@@ -55,6 +69,16 @@ label_price_pink_hardmode_armor_text.set(
     'Costs: ' + str(price_pink_hardmode_armor) + ' knives \n Grants: ' + str(kps_pink_hardmode_armor) + ' kps')
 label_price_grey_hardmode_armor_text.set(
     'Costs: ' + str(price_grey_hardmode_armor) + ' knives \n Grants: ' + str(kps_grey_hardmode_armor) + ' kps')
+label_price_hallowed_armor_text.set(
+    'Costs: ' + str(price_hallowed_armor) + ' knives \n Grants: ' + str(kps_hallowed_armor) + ' kps')
+label_price_chlorophyte_armor_text.set(
+    'Costs: ' + str(price_chlorophyte_armor) + ' knives \n Grants: ' + str(kps_chlorophyte_armor) + ' kps')
+label_price_turtle_armor_text.set(
+    'Costs: ' + str(price_turtle_armor) + ' knives \n Grants: ' + str(kps_turtle_armor) + ' kps')
+label_price_beetle_armor_text.set(
+    'Costs: ' + str(price_beetle_armor) + ' knives \n Grants: ' + str(kps_beetle_armor) + ' kps')
+label_price_solar_flare_armor_text.set(
+    'Costs: ' + str(price_solar_flare_armor) + ' knives \n Grants: ' + str(kps_solar_flare_armor) + ' kps')
 
 
 # Defining some functions
@@ -84,7 +108,7 @@ def save():
     #
     #
     Armor_price = [price_wood_armor, price_shadow_armor, price_molten_armor, price_yellow_hardmode_armor,
-                   price_pink_hardmode_armor, price_grey_hardmode_armor]
+                   price_pink_hardmode_armor, price_grey_hardmode_armor, price_hallowed_armor, price_chlorophyte_armor, price_turtle_armor, price_beetle_armor, price_solar_flare_armor]
 
     savefile = open("SaveFile.txt", "w+")
     savefile.write(str(amount_knives) + "\n" + str(kps))
@@ -103,6 +127,12 @@ def load():
     global price_yellow_hardmode_armor
     global price_pink_hardmode_armor
     global price_grey_hardmode_armor
+    global price_hallowed_armor
+    global price_chlorophyte_armor
+    global price_turtle_armor
+    global price_beetle_armor
+    global price_solar_flare_armor
+
     savefile = open("SaveFile.txt", "r")
     inside_save_file = savefile.readlines()
     amount_knives = float(inside_save_file[0][:-1])
@@ -112,7 +142,13 @@ def load():
     price_molten_armor = float(inside_save_file[4][:-1])
     price_yellow_hardmode_armor = float(inside_save_file[5][:-1])
     price_pink_hardmode_armor = float(inside_save_file[6][:-1])
-    price_grey_hardmode_armor = float(inside_save_file[7])
+    price_grey_hardmode_armor = float(inside_save_file[7][:-1])
+    price_hallowed_armor = float(inside_save_file[8][:-1])
+    price_chlorophyte_armor = float(inside_save_file[9][:-1])
+    price_turtle_armor = float(inside_save_file[10][:-1])
+    price_beetle_armor = float(inside_save_file[11][:-1])
+    price_solar_flare_armor = float(inside_save_file[12])
+
     label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
     label_price_wood_armor_text.set(
@@ -127,7 +163,22 @@ def load():
         'Costs: ' + str(price_pink_hardmode_armor) + ' knives \n Grants: ' + str(kps_pink_hardmode_armor) + ' kps')
     label_price_grey_hardmode_armor_text.set(
         'Costs: ' + str(price_grey_hardmode_armor) + ' knives \n Grants: ' + str(kps_grey_hardmode_armor) + ' kps')
+    label_price_hallowed_armor_text.set(
+        'Costs: ' + str(price_hallowed_armor) + ' knives \n Grants: ' + str(kps_hallowed_armor) + ' kps')
+    label_price_chlorophyte_armor_text.set(
+        'Costs: ' + str(price_chlorophyte_armor) + ' knives \n Grants: ' + str(kps_chlorophyte_armor) + ' kps')
+    label_price_turtle_armor_text.set(
+        'Costs: ' + str(price_turtle_armor) + ' knives \n Grants: ' + str(kps_turtle_armor) + ' kps')
+    label_price_beetle_armor_text.set(
+        'Costs: ' + str(price_beetle_armor) + ' knives \n Grants: ' + str(kps_beetle_armor) + ' kps')
+    label_price_solar_flare_armor_text.set(
+        'Costs: ' + str(price_solar_flare_armor) + ' knives \n Grants: ' + str(kps_solar_flare_armor) + ' kps')
 
+# Adding save and load buttons and adding them to the grid
+save_button = Button(root, text="Save", command=save)
+load_button = Button(root, text="Load", command=load)
+save_button.grid(row=0, column=7)
+load_button.grid(row=0, column=8)
 
 # Defining all the armor funcions
 def woodarmor(event):
@@ -137,7 +188,7 @@ def woodarmor(event):
     if amount_knives >= price_wood_armor:
         amount_knives -= round(price_wood_armor, 1)
         kps += kps_wood_armor
-        price_wood_armor += round(price_wood_armor / 12)
+        price_wood_armor += round(price_wood_armor / 10)
         kps = round(kps, 1)
         label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
@@ -152,7 +203,7 @@ def shadowarmor(event):
     if amount_knives >= price_shadow_armor:
         amount_knives -= round(price_shadow_armor, 1)
         kps += kps_shadow_armor
-        price_shadow_armor += round(price_shadow_armor / 12)
+        price_shadow_armor += round(price_shadow_armor / 14)
         kps = round(kps, 1)
         label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
@@ -182,7 +233,7 @@ def yellowhardmodearmor(event):
     if amount_knives >= price_yellow_hardmode_armor:
         amount_knives -= round(price_yellow_hardmode_armor, 1)
         kps += kps_yellow_hardmode_armor
-        price_yellow_hardmode_armor += round(price_yellow_hardmode_armor / 12)
+        price_yellow_hardmode_armor += round(price_yellow_hardmode_armor / 14)
         kps = round(kps, 1)
         label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
@@ -212,12 +263,82 @@ def greyhardmodearmor(event):
     if amount_knives >= price_grey_hardmode_armor:
         amount_knives -= round(price_grey_hardmode_armor, 1)
         kps += kps_grey_hardmode_armor
-        price_grey_hardmode_armor += round(price_grey_hardmode_armor / 12)
+        price_grey_hardmode_armor += round(price_grey_hardmode_armor / 10)
         kps = round(kps, 1)
         label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
     label_price_grey_hardmode_armor_text.set(
         'Costs: ' + str(price_grey_hardmode_armor) + ' knives \n Grants: ' + str(kps_grey_hardmode_armor) + ' kps')
+
+def hallowedarmor(event):
+    global amount_knives
+    global kps
+    global price_hallowed_armor
+    if amount_knives >= price_hallowed_armor:
+        amount_knives -= round(price_hallowed_armor, 1)
+        kps += kps_hallowed_armor
+        price_hallowed_armor += round(price_hallowed_armor / 14)
+        kps = round(kps, 1)
+        label_kps_text.set('Kps: ' + str(kps))
+    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+    label_price_hallowed_armor_text.set(
+        'Costs: ' + str(price_hallowed_armor) + ' knives \n Grants: ' + str(kps_hallowed_armor) + ' kps')
+
+def chlorophytearmor(event):
+    global amount_knives
+    global kps
+    global price_chlorophyte_armor
+    if amount_knives >= price_chlorophyte_armor:
+        amount_knives -= round(price_chlorophyte_armor, 1)
+        kps += kps_chlorophyte_armor
+        price_chlorophyte_armor += round(price_chlorophyte_armor / 6)
+        kps = round(kps, 1)
+        label_kps_text.set('Kps: ' + str(kps))
+    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+    label_price_chlorophyte_armor_text.set(
+        'Costs: ' + str(price_chlorophyte_armor) + ' knives \n Grants: ' + str(kps_chlorophyte_armor) + ' kps')
+
+def turtlearmor(event):
+    global amount_knives
+    global kps
+    global price_turtle_armor
+    if amount_knives >= price_turtle_armor:
+        amount_knives -= round(price_turtle_armor, 1)
+        kps += kps_turtle_armor
+        price_turtle_armor += round(price_turtle_armor / 8)
+        kps = round(kps, 1)
+        label_kps_text.set('Kps: ' + str(kps))
+    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+    label_price_turtle_armor_text.set(
+        'Costs: ' + str(price_turtle_armor) + ' knives \n Grants: ' + str(kps_turtle_armor) + ' kps')
+
+def beetlearmor(event):
+    global amount_knives
+    global kps
+    global price_beetle_armor
+    if amount_knives >= price_beetle_armor:
+        amount_knives -= round(price_beetle_armor, 1)
+        kps += kps_beetle_armor
+        price_beetle_armor += round(price_beetle_armor / 15)
+        kps = round(kps, 1)
+        label_kps_text.set('Kps: ' + str(kps))
+    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+    label_price_beetle_armor_text.set(
+        'Costs: ' + str(price_turtle_armor) + ' knives \n Grants: ' + str(kps_beetle_armor) + ' kps')
+
+def solarflarearmor(event):
+    global amount_knives
+    global kps
+    global price_solar_flare_armor
+    if amount_knives >= price_solar_flare_armor:
+        amount_knives -= round(price_solar_flare_armor, 1)
+        kps += kps_solar_flare_armor
+        price_solar_flare_armor += round(price_solar_flare_armor / 15)
+        kps = round(kps, 1)
+        label_kps_text.set('Kps: ' + str(kps))
+    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+    label_price_solar_flare_armor_text.set(
+        'Costs: ' + str(price_solar_flare_armor) + ' knives \n Grants: ' + str(kps_solar_flare_armor) + ' kps')
 
 
 # Starting the kps "thread" aka extra running 24/7 func
@@ -260,6 +381,31 @@ label_photo_grey_hardmode_armor = Label(root, image=photo_grey_hardmode_armor)
 label_photo_grey_hardmode_armor.bind("<Button-1>", greyhardmodearmor)
 label_photo_grey_hardmode_armor.grid(row=6, column=0)
 
+photo_hallowed_armor = PhotoImage(file="hallowed_armor.png")
+label_photo_hallowed_armor = Label(root, image=photo_hallowed_armor)
+label_photo_hallowed_armor.bind("<Button-1>", hallowedarmor)
+label_photo_hallowed_armor.grid(row=7, column=0)
+
+photo_chlorophyte_armor = PhotoImage(file="chlorophyte_armor.png")
+label_photo_chlorophyte_armor = Label(root, image=photo_chlorophyte_armor)
+label_photo_chlorophyte_armor.bind("<Button-1>", chlorophytearmor)
+label_photo_chlorophyte_armor.grid(row=8, column=0)
+
+photo_turtle_armor = PhotoImage(file="turtle_armor.png")
+label_photo_turtle_armor = Label(root, image=photo_turtle_armor)
+label_photo_turtle_armor.bind("<Button-1>", turtlearmor)
+label_photo_turtle_armor.grid(row=9, column=0)
+
+photo_beetle_armor = PhotoImage(file="beetle_armor.png")
+label_photo_beetle_armor = Label(root, image=photo_beetle_armor)
+label_photo_beetle_armor.bind("<Button-1>", turtlearmor)
+label_photo_beetle_armor.grid(row=10, column=0)
+
+photo_solar_flare_armor = PhotoImage(file="solar_flare_armor.png")
+label_photo_solar_flare_armor = Label(root, image=photo_solar_flare_armor)
+label_photo_solar_flare_armor.bind("<Button-1>", turtlearmor)
+label_photo_solar_flare_armor.grid(row=11, column=0)
+
 # Defining the text labels
 label_kps = Label(textvariable=label_kps_text)
 label_amount = Label(textvariable=label_knife_amount_text)
@@ -269,6 +415,11 @@ label_price_molten_armor = Label(textvariable=label_price_molten_armor_text)
 label_price_yellow_hardmode_armor = Label(textvariable=label_price_yellow_hardmode_armor_text)
 label_price_pink_hardmode_armor = Label(textvariable=label_price_pink_hardmode_armor_text)
 label_price_grey_hardmode_armor = Label(textvariable=label_price_grey_hardmode_armor_text)
+label_price_hallowed_armor = Label(textvariable=label_price_hallowed_armor_text)
+label_price_chlorophyte_armor = Label(textvariable=label_price_chlorophyte_armor_text)
+label_price_turtle_armor = Label(textvariable=label_price_turtle_armor_text)
+label_price_beetle_armor = Label(textvariable=label_price_beetle_armor_text)
+label_price_solar_flare_armor = Label(textvariable=label_price_solar_flare_armor_text)
 
 # Placing the the text labels in a grid pattern
 label_amount.grid(row=1, column=3)
@@ -279,11 +430,11 @@ label_price_molten_armor.grid(row=3, column=1)
 label_price_yellow_hardmode_armor.grid(row=4, column=1)
 label_price_pink_hardmode_armor.grid(row=5, column=1)
 label_price_grey_hardmode_armor.grid(row=6, column=1)
+label_price_hallowed_armor.grid(row=7, column=1)
+label_price_chlorophyte_armor.grid(row=8, column=1)
+label_price_turtle_armor.grid(row=9, column=1)
+label_price_beetle_armor.grid(row=10, column=1)
+label_price_solar_flare_armor.grid(row=11, column=1)
 
-# Saving stuff
-save_button = Button(root, text="Save", command=save)
-load_button = Button(root, text="Load", command=load)
-save_button.grid(row=0, column=7)
-load_button.grid(row=0, column=8)
 # Displaying everything on the screen
 root.mainloop()
