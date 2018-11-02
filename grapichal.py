@@ -2,6 +2,7 @@
 from tkinter import *
 from threading import Thread
 import time
+import random
 
 # Making the main program "root"
 root = Tk()
@@ -95,7 +96,11 @@ def kps_func():
 def click(event):
     global amount_knives
     global click_power
-    amount_knives += click_power
+    critical = random.randint(0,24)
+    if critical == 0:
+        amount_knives += click_power*2
+    else:
+        amount_knives += click_power
     label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
 
 
@@ -343,7 +348,9 @@ def solarflarearmor(event):
 
 # Starting the kps "thread" aka extra running 24/7 func
 t1 = Thread(target=kps_func)
+t1.daemon = True
 t1.start()
+
 
 # Impoting images to labels, binding them to left-mouseclick and importing them in a grid pattern
 photo_knife = PhotoImage(file="Vampire_Knives.png")
@@ -398,12 +405,12 @@ label_photo_turtle_armor.grid(row=9, column=0)
 
 photo_beetle_armor = PhotoImage(file="beetle_armor.png")
 label_photo_beetle_armor = Label(root, image=photo_beetle_armor)
-label_photo_beetle_armor.bind("<Button-1>", turtlearmor)
+label_photo_beetle_armor.bind("<Button-1>", beetlearmor)
 label_photo_beetle_armor.grid(row=10, column=0)
 
 photo_solar_flare_armor = PhotoImage(file="solar_flare_armor.png")
 label_photo_solar_flare_armor = Label(root, image=photo_solar_flare_armor)
-label_photo_solar_flare_armor.bind("<Button-1>", turtlearmor)
+label_photo_solar_flare_armor.bind("<Button-1>", solarflarearmor)
 label_photo_solar_flare_armor.grid(row=11, column=0)
 
 # Defining the text labels
