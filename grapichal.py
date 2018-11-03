@@ -3,6 +3,7 @@ from tkinter import *
 from threading import Thread
 import time
 import random
+import winsound
 
 # Making the main program "root"
 root = Tk()
@@ -27,6 +28,7 @@ label_price_solar_flare_armor_text = StringVar()
 amount_knives = 0
 kps = 0
 click_power = 1
+critical_chance = 4
 
 # Kps values
 kps_wood_armor = 0.2
@@ -96,12 +98,18 @@ def kps_func():
 def click(event):
     global amount_knives
     global click_power
-    critical = random.randint(0,24)
-    if critical == 0:
+    global critical_chance
+    critical = random.randint(0,100)
+    if critical < critical_chance:
         amount_knives += click_power*2
+        label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+        winsound.PlaySound('click_critical.wav', winsound.SND_ASYNC)
+
     else:
         amount_knives += click_power
-    label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+        label_knife_amount_text.set('Total amount of knifes: ' + str(amount_knives))
+        winsound.PlaySound("click.wav", winsound.SND_ASYNC)
+
 
 
 def save():
