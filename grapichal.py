@@ -36,19 +36,19 @@ critical_chance = 4
 kps_wood_armor = 0.2
 kps_shadow_armor = 1
 kps_molten_armor = 3
-kps_yellow_hardmode_armor = 20
-kps_pink_hardmode_armor = 35
-kps_grey_hardmode_armor = 250
-kps_hallowed_armor = 400
+kps_yellow_hardmode_armor = 18
+kps_pink_hardmode_armor = 32
+kps_grey_hardmode_armor = 2530
+kps_hallowed_armor = 370
 kps_chlorophyte_armor = 600
-kps_turtle_armor = 3000
-kps_beetle_armor = 10000
-kps_solar_flare_armor = 1000000
+kps_turtle_armor = 2800
+kps_beetle_armor = 9000
+kps_solar_flare_armor = 900000
 
 # Armor pricing
-price_wood_armor = 100
-price_shadow_armor = 500
-price_molten_armor = 1000
+price_wood_armor = 150
+price_shadow_armor = 550
+price_molten_armor = 1100
 price_yellow_hardmode_armor = 5000
 price_pink_hardmode_armor = 8000
 price_grey_hardmode_armor = 50000
@@ -56,7 +56,7 @@ price_hallowed_armor = 100000
 price_chlorophyte_armor = 200000
 price_turtle_armor = 500000
 price_beetle_armor = 1000000
-price_solar_flare_armor = 100000000
+price_solar_flare_armor = 1000000000
 
 # Upgrade pricing
 price_putrid_scent_upgrade = 10000
@@ -88,7 +88,7 @@ label_price_solar_flare_armor_text.set(
     'Costs: ' + str(price_solar_flare_armor) + ' knives \n Grants: ' + str(kps_solar_flare_armor) + ' kps')
 
 # Telling all the upgrade text labels what to display
-label_price_putrid_scent_upgrade_text.set('Costs: ' + str(price_putrid_scent_upgrade) + ' knives \n Grants a 4% \nextra chance to hit a critical')
+label_price_putrid_scent_upgrade_text.set('Costs: ' + str(price_putrid_scent_upgrade) + ' knives \n Grants a 5% \nextra chance to hit a critical\nand 5 extra click power')
 
 # Defining some functions
 def kps_func():
@@ -345,7 +345,7 @@ def beetlearmor(event):
         label_kps_text.set('Kps: ' + str(kps))
     label_knife_amount_text.set('Knives: ' + str(amount_knives))
     label_price_beetle_armor_text.set(
-        'Costs: ' + str(price_turtle_armor) + ' knives \n Grants: ' + str(kps_beetle_armor) + ' kps')
+        'Costs: ' + str(price_beetle_armor) + ' knives \n Grants: ' + str(kps_beetle_armor) + ' kps')
 
 def solarflarearmor(event):
     global amount_knives
